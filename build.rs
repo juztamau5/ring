@@ -30,6 +30,7 @@ const X86: &str = "x86";
 const X86_64: &str = "x86_64";
 const AARCH64: &str = "aarch64";
 const ARM: &str = "arm";
+const PPC64: &str = "powerpc64";
 
 #[rustfmt::skip]
 const RING_SRCS: &[(&[&str], &str)] = &[
@@ -40,12 +41,12 @@ const RING_SRCS: &[(&[&str], &str)] = &[
     (&[], "crypto/mem.c"),
     (&[], "crypto/poly1305/poly1305.c"),
 
-    (&[AARCH64, ARM, X86_64, X86], "crypto/crypto.c"),
-    (&[AARCH64, ARM, X86_64, X86], "crypto/curve25519/curve25519.c"),
-    (&[AARCH64, ARM, X86_64, X86], "crypto/fipsmodule/ec/ecp_nistz.c"),
-    (&[AARCH64, ARM, X86_64, X86], "crypto/fipsmodule/ec/gfp_p256.c"),
-    (&[AARCH64, ARM, X86_64, X86], "crypto/fipsmodule/ec/gfp_p384.c"),
-    (&[AARCH64, ARM, X86_64, X86], "crypto/fipsmodule/ec/p256.c"),
+    (&[AARCH64, ARM, X86_64, X86, PPC64], "crypto/crypto.c"),
+    (&[AARCH64, ARM, X86_64, X86, PPC64], "crypto/curve25519/curve25519.c"),
+    (&[AARCH64, ARM, X86_64, X86, PPC64], "crypto/fipsmodule/ec/ecp_nistz.c"),
+    (&[AARCH64, ARM, X86_64, X86, PPC64], "crypto/fipsmodule/ec/gfp_p256.c"),
+    (&[AARCH64, ARM, X86_64, X86, PPC64], "crypto/fipsmodule/ec/gfp_p384.c"),
+    (&[AARCH64, ARM, X86_64, X86, PPC64], "crypto/fipsmodule/ec/p256.c"),
 
     (&[X86_64, X86], "crypto/cpu-intel.c"),
 
@@ -941,6 +942,7 @@ fn prefix_all_symbols(pp: char, prefix_prefix: &str, prefix: &str) -> String {
         "bn_from_montgomery_in_place",
         "bn_gather5",
         "bn_mul_mont",
+        "bn_sub_words",
         "bn_mul_mont_gather5",
         "bn_neg_inv_mod_r_u64",
         "bn_power5",
